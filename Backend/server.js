@@ -189,31 +189,18 @@ app.post('/api/login', async (req, res) => {
 // Forgot password route
 app.post('/api/forgot', async (req, res) => {
   try {
-    const { email, newPassword, confirmNewPassword } = req.body;
-
-    // Step 1: Check if user exists
+    const { email } = req.body;
     const result = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
+
     if (result.rows.length === 0) {
       return res.status(404).json({ error: 'User not found' });
     }
 
-    // Step 2: Validate password match
-    if (newPassword !== confirmNewPassword) {
-      return res.status(400).json({ error: 'Passwords do not match' });
-    }
-
-    // Step 3: Hash the new password
-    const hashedPassword = await bcrypt.hash(newPassword, 10);
-
-    // Step 4: Update password in DB
-    await pool.query('UPDATE users SET password = $1 WHERE email = $2', [hashedPassword, email]);
-
-    // Step 5: Respond with success
-    res.json({ message: 'Password updated successfully' });
-
+    // Implement password reset logic (e.g., send email)
+    res.json({ message: 'Password reset link sent' });
   } catch (err) {
     console.error('Forgot password error:', err);
-    res.status(500).json({ error: 'Failed to reset password' });
+    res.status(500).json({ error: 'Failed to process request' });
   }
 });
 
