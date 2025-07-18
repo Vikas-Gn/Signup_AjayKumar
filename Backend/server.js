@@ -187,8 +187,6 @@ app.post('/api/login', async (req, res) => {
 });
 
 // Forgot password route
-const bcrypt = require('bcrypt');
-
 app.post('/api/forgot', async (req, res) => {
   try {
     const { email, newPassword, confirmNewPassword } = req.body;
