@@ -228,7 +228,7 @@ app.post('/check-email-data', async (req, res) => {
 
 // Start server
 const PORT = process.env.PORT || 3098;
-app.listen(3005, '0.0.0.0', () => {
-  console.log("Server running on port 3005");
+app.listen(3098, '0.0.0.0', () => {
+  console.log("Server running on port 3098");
   console.log(`Allowed CORS origins: ${allowedOrigins.join(', ')}`);
 });
