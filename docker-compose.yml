@@ -5,7 +5,7 @@ services:
     build:
       context: ./Frontend/forgot
     ports:
-      - "8005:80"
+      - "9067:80"
     networks:
       - app-network
 
@@ -13,7 +13,7 @@ services:
     build:
       context: ./Frontend/login
     ports:
-      - "8006:80"
+      - "9068:80"
     networks:
       - app-network
 
@@ -21,7 +21,7 @@ services:
     build:
       context: ./Frontend/signup
     ports:
-      - "8007:80"
+      - "9069:80"
     networks:
       - app-network
 
@@ -29,16 +29,16 @@ services:
     build:
       context: ./Backend
     ports:
-      - "3005:3005"
+      - "3098:3098"
     environment:
       - NODE_ENV=production
-      - PORT=3005
+      - PORT=3098
       - DB_HOST=postgres
       - DB_USER=postgres
       - DB_NAME=auth_db
       - DB_PASSWORD=admin123
       - DB_PORT=5432
-      - FRONTEND_URL=http://54.166.206.245:8005
+      - FRONTEND_URL=http://65.2.184.61:9067
     volumes:
       - ./Backend:/app
       - ./Backend/server.env:/app/server.env
@@ -52,7 +52,7 @@ services:
   postgres:
     image: postgres:14
     ports:
-      - "5434:5432"
+      - "5065:5432"
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=admin123
